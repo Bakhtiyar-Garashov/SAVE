@@ -56,4 +56,4 @@ def get_data(request):
     except Exception as e:
         # in case of any error (e.g. issues with reading csv), simply show error message to the user
         return HttpResponse(
-            "Something went wrong. Please try see the error message for more info. \nError message:{}".format(e))
+            "Something went wrong. See the error message for more info. \nError message:{}".format(e))
