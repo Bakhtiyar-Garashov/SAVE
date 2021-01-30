@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Bootstrap CSS CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAVE</title>
+
+
+</head>
+<body>
+<div class="container mt-2 p-5">
+    <div class="jumbotron text-center jumbotron-fluid">
+        <div class="container">
+            <h5 class="display-5">SAVE</h5>
+            <p class="lead">Sort Allocation Value Evaluator</p>
+        </div>
+    </div>
+
+    <form action="{% url "get_data" %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <select id="FC-dropdown" class="form-control selectpicker" for="inlineFormInput" name="inputFC">
+                <option selected>FC</option>
+                <option>BCN1</option>
+                <option>BER3</option>
+                <option>BHX1</option>
+                <option>BHX2</option>
+                <option>BHX3</option>
+                <option>BHX5</option>
+                <option>BLQ1</option>
+                <option>BRE1</option>
+                <option>BRS1</option>
+                <option>BTS2</option>
+                <option>BVA1</option>
+                <option>CGN1</option>
+                <option>CWL1</option>
+                <option>DTM1</option>
+                <option>DTM3</option>
+                <option>DUS2</option>
+                <option>DUS4</option>
+                <option>EDI4</option>
+                <option>EMA1</option>
+                <option>EUK5</option>
+                <option>FCO1</option>
+                <option>FCO2</option>
+                <option>FRA1</option>
+                <option>FRA3</option>
+                <option>FRA7</option>
+                <option>GLA1</option>
+                <option>HAM2</option>
+                <option>KTW1</option>
+                <option>KTW3</option>
+                <option>LBA1</option>
+                <option>LBA2</option>
+                <option>LCJ2</option>
+                <option>LCY2</option>
+                <option>LEJ1</option>
+                <option>LEJ3</option>
+                <option>LIL1</option>
+                <option>LTN1</option>
+                <option>LTN2</option>
+                <option>LTN4</option>
+                <option>LYS1</option>
+                <option>LYS8</option>
+                <option>MAD4</option>
+                <option>MAD6</option>
+                <option>MAN1</option>
+                <option>MAN2</option>
+                <option>MAN3</option>
+                <option>MAN4</option>
+                <option>MME1</option>
+                <option>MRS1</option>
+                <option>MUC3</option>
+                <option>MXP3</option>
+                <option>MXP5</option>
+                <option>ORY1</option>
+                <option>ORY4</option>
+                <option>PAD1</option>
+                <option>POZ1</option>
+                <option>PRG2</option>
+                <option>STR1</option>
+                <option>SVQ1</option>
+                <option>SZZ1</option>
+                <option>TRN1</option>
+                <option>WRO1</option>
+                <option>WRO2</option>
+                <option>XDEB</option>
+                <option>XDEH</option>
+                <option>XDEI</option>
+                <option>XDET</option>
+                <option>XDEU</option>
+                <option>XDEV</option>
+                <option>XDEY</option>
+                <option>XDEZ</option>
+                <option>XESA</option>
+                <option>XESC</option>
+                <option>XFRE</option>
+                <option>XFRF</option>
+                <option>XFRG</option>
+                <option>XFRH</option>
+                <option>XITC</option>
+                <option>XITD</option>
+                <option>XITF</option>
+                <option>XUKA</option>
+                <option>XUKD</option>
+            </select>
+
+            <select class="form-control selectpicker my-4" id="inlineFormCustomSelectPref" name="inputYear">
+                <option selected>Year</option>
+                <option>2020</option>
+                <option>2021</option>
+                <option>2022</option>
+            </select>
+
+            <label for="manualSortation">Manual sortation %</label>
+            <input type="text" class="form-control my-3" id="manualSortation" placeholder="e.g. 0.7 for 70%"
+                   name="inputMS">
+
+            <label for="capex">CAPEX cost</label>
+            <input type="text" class="form-control my-3" id="capex" placeholder="CAPEX cost per sort" name="inputCAPEX">
+            <div class="row px-3 my-4">
+                <div class="col-md-4 col-sm-12 col-lg-4 ">
+                    <label class="form-check-label" for="annualviewCheck">Annual incremental view (sort by sort)</label>
+                    <div class="input-group">
+                        <input type="checkbox" aria-label="Checkbox for following text input" name="inputAnnual">
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-lg-4">
+                    <label class="form-check-label" for="idealsortplanCheck">Select if restricted number of
+                        sorts</label>
+                    <div class="input-group">
+                        <input type="checkbox" id="idealsortplanCheck" name="inputIdeal"/>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-lg-4">
+                    <label class="form-check-label" for="incrementalviewCheck">Annual incremental view (10, 20, ...
+                        sorts)</label>
+                    <div class="input-group">
+                        <input type="checkbox" id="incrementalviewCheck" name="inputIncremental"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="custom-file">
+                <input required type="file" accept="text/csv" class="custom-file-input" id="inputGroupFile02"
+                       name="csv_file">
+                <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-success">Run scenario</button>
+    </form>
+
+</div>
+
+<!--Bootstrap Js CDN-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+    // show uploaded file name or names if multiple
+    $("#inputGroupFile02").change(function (e) {
+        let files = [];
+        for (let i = 0; i < $(this)[0].files.length; i++) {
+            files.push($(this)[0].files[i].name);
+        }
+        $(this).next('.custom-file-label').html(files.join(', '));
+    });
+
+</script>
+</body>
+</html>
